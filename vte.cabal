@@ -22,6 +22,10 @@ Extra-Source-Files: Graphics/UI/Gtk/Vte/VteCharAttrFields.h
                     Gtk2HsSetup.hs
                     marshal.list
 
+Data-Dir:		demo
+Data-Files:		Vte.hs
+                Makefile
+				
 x-Types-File:       Graphics/UI/Gtk/Vte/Types.chs
 x-Types-Tag:        vte		
 x-Types-ModName:    Graphics.UI.Gtk.Vte.Types
