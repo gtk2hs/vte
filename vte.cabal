@@ -21,6 +21,7 @@ Tested-With:    GHC == 6.12.1
 Extra-Source-Files: Graphics/UI/Gtk/Vte/VteCharAttrFields.h
                     Gtk2HsSetup.hs
                     marshal.list
+					hierarchy.list
 
 Data-Dir:		demo
 Data-Files:		Vte.hs
@@ -31,6 +32,7 @@ x-Types-Tag:        vte
 x-Types-ModName:    Graphics.UI.Gtk.Vte.Types
 x-Types-Forward:    *Graphics.UI.GtkInternals
 x-Types-Destructor: objectUnrefFromMainloop
+x-Types-Hierarchy:  hierarchy.list
 
 Source-Repository head
   type:         darcs
