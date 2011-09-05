@@ -6,7 +6,7 @@ Copyright:      (c) 2001-2010 The Gtk2Hs Team
 Author:         Andy Stewart, Axel Simon
 Maintainer:     gtk2hs-users@lists.sourceforge.net
 Build-Type:     Custom
-Cabal-Version:  >= 1.6.0
+Cabal-Version:  >= 1.8
 Stability:      provisional
 homepage:       http://www.haskell.org/gtk2hs/
 bug-reports:    http://hackage.haskell.org/trac/gtk2hs/
@@ -19,9 +19,9 @@ Description:    The VTE library inserts terminal capability strings into a trie,
 Category:       Graphics
 Tested-With:    GHC == 6.12.1
 Extra-Source-Files: Graphics/UI/Gtk/Vte/VteCharAttrFields.h
-                    Gtk2HsSetup.hs
+                    SetupWrapper.hs SetupMain.hs Gtk2HsSetup.hs
                     marshal.list
-					hierarchy.list
+                    hierarchy.list
 
 Data-Dir:		demo
 Data-Files:		Vte.hs
