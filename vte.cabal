@@ -8,7 +8,7 @@ Maintainer:     gtk2hs-users@lists.sourceforge.net
 Build-Type:     Custom
 Cabal-Version:  >= 1.8
 Stability:      provisional
-homepage:       http://www.haskell.org/gtk2hs/
+homepage:       http://projects.haskell.org/gtk2hs/
 bug-reports:    http://hackage.haskell.org/trac/gtk2hs/
 Synopsis:       Binding to the VTE library.
 Description:    The VTE library inserts terminal capability strings into a trie, and then
