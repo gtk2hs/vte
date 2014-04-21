@@ -15,18 +15,30 @@
 # conditional by appending 'if <tag>'. Such types are only produces if
 # --tag=<tag> is given on the command line of TypeGenerator.
 
-
+# Before these conditions, two additional properties may be given:
+# * noDestr	: ignores the destructor given by the --destructor
+#		  command line argument and uses 'objectUnref'
+# * noEq	: do not make this type an instance of Eq; used
+#		  if a different equality instance is manually
+#		  defined later
     GObject 
-        GdkDrawable 
-            GdkWindow		as DrawWindow, gdk_window_object_get_type
-#            GdkDrawableImplX11
-#                GdkWindowImplX11
-            GdkPixmap
-            GdkGLPixmap		if gtkglext
-            GdkGLWindow		if gtkglext
-        GdkColormap
-	GdkScreen		if gtk-2.2
-	GdkDisplay		if gtk-2.2
+	    AtkObject
+		    GtkAccessible		
+	    GdkKeymap				
+	    GdkDisplayManager		
+	    GdkAppLaunchContext		
+	    GtkPrintSettings		
+	    GtkPrintOperation		
+	    GtkPrintOperationPreview 
+	    GtkPageSetup			
+	    GtkPrintContext			
+	    GtkRecentChooser		
+	    GtkRecentManager	    
+        GdkWindow as DrawWindow, gdk_window_get_type
+        GdkGLPixmap		if gtkglext
+        GdkGLWindow		if gtkglext
+	GdkScreen		
+	GdkDisplay		
 	GdkVisual
 	GdkDevice
         GtkSettings
@@ -40,67 +52,68 @@
         GtkStyle
 	GtkRcStyle
         GdkDragContext
-        GdkPixbuf
-	GdkPixbufAnimation
-	    GdkPixbufSimpleAnim
-	GdkPixbufAnimationIter
+        GdkPixbuf		noDestr
+	GdkPixbufAnimation	noDestr
+	    GdkPixbufSimpleAnim	noDestr
+	GdkPixbufAnimationIter	noDestr
         GtkTextChildAnchor
         GtkTextMark
 	    GtkSourceMarker	if sourceview
             GtkSourceMark       if gtksourceview2
-        GtkObject
-            GtkWidget
+        GtkRecentFilter		
+        GtkWidget
+				GtkHSV as HSV, gtk_hsv_get_type  
                 GtkMisc
                     GtkLabel
                         GtkAccelLabel
-                        GtkTipsQuery	if deprecated
                     GtkArrow
                     GtkImage
                 GtkContainer
+				    GtkToolPalette		
+				    GtkToolItemGroup	
                     WebKitWebView as WebView, webkit_web_view_get_type            if webkit 
                     GtkBin
                         GtkAlignment
                         GtkFrame
                             GtkAspectFrame
                         GtkButton
+							GtkScaleButton		
+							    GtkVolumeButton		
+						    GtkLinkButton		
                             GtkToggleButton
                                 GtkCheckButton
                                     GtkRadioButton
-                            GtkColorButton		if gtk-2.4
-                            GtkFontButton		if gtk-2.4
-                            GtkOptionMenu		if deprecated
-                        GtkItem
-                            GtkMenuItem
+                            GtkColorButton		
+                            GtkFontButton		
+                        GtkMenuItem
                                 GtkCheckMenuItem
                                     GtkRadioMenuItem
                                 GtkTearoffMenuItem
                                 GtkImageMenuItem
                                 GtkSeparatorMenuItem
-                            GtkListItem			if deprecated
-#			    GtkTreeItem
+                        GtkOverlay
                         GtkWindow
+						    GtkAssistant		
+						    GtkOffscreenWindow	
                             GtkDialog
-			    	GtkAboutDialog		if gtk-2.6
+			    	GtkAboutDialog		
                                 GtkColorSelectionDialog
-                                GtkFileSelection
-				GtkFileChooserDialog	if gtk-2.4
+				GtkFileChooserDialog	
                                 GtkFontSelectionDialog
-                                GtkInputDialog
                                 GtkMessageDialog
                             GtkPlug	if plugNsocket
                         GtkEventBox
                         GtkHandleBox
                         GtkScrolledWindow
                         GtkViewport
-			GtkExpander			if gtk-2.4
-			GtkComboBox			if gtk-2.4
-			    GtkComboBoxEntry		if gtk-2.4
-			GtkToolItem			if gtk-2.4
-			    GtkToolButton		if gtk-2.4
-				GtkMenuToolButton	if gtk-2.6
-				GtkToggleToolButton	if gtk-2.4
-				    GtkRadioToolButton	if gtk-2.4
-			    GtkSeparatorToolItem	if gtk-2.4
+			GtkExpander			
+			GtkComboBox			
+			GtkToolItem			
+			    GtkToolButton		
+				GtkMenuToolButton	
+				GtkToggleToolButton	
+				    GtkRadioToolButton	
+			    GtkSeparatorToolItem	
 			GtkMozEmbed		if mozembed
 			VteTerminal as Terminal if vte
                     GtkBox
@@ -108,27 +121,25 @@
                             GtkHButtonBox
                             GtkVButtonBox
                         GtkVBox
+						    GtkRecentChooserWidget		
                             GtkColorSelection
                             GtkFontSelection
-			    GtkFileChooserWidget	if gtk-2.4
+			    GtkFileChooserWidget	
                         GtkHBox
-                            GtkCombo	if deprecated
-                            GtkFileChooserButton	if gtk-2.6
+						    GtkInfoBar 
+                            GtkFileChooserButton	
                             GtkStatusbar
-                    GtkCList		if deprecated
-                        GtkCTree	if deprecated
                     GtkFixed
                     GtkPaned
                         GtkHPaned
                         GtkVPaned
-                    GtkIconView		if gtk-2.6
+                    GtkIconView		
                     GtkLayout
-                    GtkList		if deprecated
                     GtkMenuShell
                         GtkMenu
+						    GtkRecentChooserMenu		
                         GtkMenuBar
                     GtkNotebook
-#                    GtkPacker
                     GtkSocket		if plugNsocket
                     GtkTable
                     GtkTextView
@@ -137,13 +148,11 @@
                     GtkToolbar
                     GtkTreeView
                 GtkCalendar
-                GtkCellView		if gtk-2.6
+                GtkCellView		
 		GtkDrawingArea
+				GtkSpinner		
                 GtkEntry
                     GtkSpinButton
-                GtkRuler
-                    GtkHRuler
-                    GtkVRuler
                 GtkRange
                     GtkScale
                         GtkHScale
@@ -155,55 +164,58 @@
                     GtkHSeparator
                     GtkVSeparator
                 GtkInvisible
-#                GtkOldEditable
-#                    GtkText
-                GtkPreview		if deprecated
-# Progress is deprecated, ProgressBar contains everything necessary
-#                GtkProgress
                 GtkProgressBar
-            GtkAdjustment
-            GtkIMContext
+                GtkLevelBar if gtk-3.6
+        GtkAdjustment
+        GtkIMContext
                 GtkIMMulticontext
-            GtkItemFactory		if deprecated
-            GtkTooltips
+                GtkIMContextSimple
 			
 # These object were added by hand because they do not show up in the hierarchy
 # chart.
 # These are derived from GtkObject:
-	    GtkTreeViewColumn
-	    GtkCellRenderer
+        GtkTreeViewColumn
+        GtkCellRenderer
+		    GtkCellRendererSpinner		
 		GtkCellRendererPixbuf
 		GtkCellRendererText
-		    GtkCellRendererCombo	if gtk-2.6
+		    GtkCellRendererAccel    
+		    GtkCellRendererSpin     
+		    GtkCellRendererCombo	
 		GtkCellRendererToggle
-		GtkCellRendererProgress	if gtk-2.6
-	    GtkFileFilter		if gtk-2.4
-            GtkBuilder if gtk-2.12
+		GtkCellRendererProgress	
+        GtkFileFilter
+        GtkBuilder
+        GtkStyleContext
+        GtkStyleProvider
+        GtkCssProvider
 # These are actually interfaces, but all objects that implement it are at
 # least GObjects.
-	GtkCellLayout			if gtk-2.4
-	GtkTreeSortable			if gtk-2.4
-	GtkTooltip				if gtk-2.12
+	GtkCellLayout			
+	GtkTreeSortable			
+	GtkTooltip				
 # These are derived from GObject:
-  	GtkStatusIcon                   if gtk-2.10
+  	GtkStatusIcon                   
         GtkTreeSelection
         GtkTreeModel
             GtkTreeStore
             GtkListStore
 	GtkTreeModelSort
-	GtkTreeModelFilter		if gtk-2.4
+        GtkTreeModelFilter
 	GtkIconFactory
 	GtkIconTheme
 	GtkSizeGroup
-	GtkClipboard			if gtk-2.2
+	GtkClipboard			
 	GtkAccelGroup
-	GtkAccelMap			if gtk-2.4
-	GtkEntryCompletion		if gtk-2.4
-	GtkAction			if gtk-2.4
-	    GtkToggleAction		if gtk-2.4
-		GtkRadioAction		if gtk-2.4
-	GtkActionGroup			if gtk-2.4
-	GtkUIManager			if gtk-2.4
+	GtkAccelMap			
+	GtkEntryCompletion		
+	GtkEntryBuffer		
+	GtkAction			
+	    GtkRecentAction		
+	    GtkToggleAction		
+		GtkRadioAction		
+	GtkActionGroup			
+	GtkUIManager			
 	GtkWindowGroup
         GtkSourceLanguage		if sourceview
         GtkSourceLanguage		if gtksourceview2
@@ -212,14 +224,13 @@
 	GladeXML			as GladeXML, glade_xml_get_type if libglade
 	GConfClient			as GConf if gconf
 # These ones are actualy interfaces, but interface implementations are GObjects
+	GtkCellEditable
 	GtkEditable
 	GtkSourceStyle			as SourceStyleObject if gtksourceview2
 	GtkSourceStyleScheme		if sourceview
 	GtkSourceStyleScheme		if gtksourceview2
 	GtkSourceStyleSchemeManager	if gtksourceview2
-	GtkFileChooser			if gtk-2.4
-## This now became a GObject in version 2:
-	GdkGC				as GC, gdk_gc_get_type
+	GtkFileChooser			
 ## These are Pango structures
 	PangoContext		as PangoContext, pango_context_get_type if pango
 	PangoLayout		as PangoLayoutRaw, pango_layout_get_type if pango

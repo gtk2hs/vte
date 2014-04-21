@@ -1,4 +1,4 @@
-Name:           vte
+Name:           vte3
 Version:        0.12.5.0
 License:        LGPL-2.1
 License-file:   COPYING
@@ -21,7 +21,7 @@ Tested-With:    GHC == 6.10.4, GHC == 6.12.3, GHC == 7.0.4, GHC == 7.2.1
 Extra-Source-Files: Graphics/UI/Gtk/Vte/VteCharAttrFields.h
                     SetupWrapper.hs SetupMain.hs Gtk2HsSetup.hs
                     marshal.list
-                    hierarchy.list
+                    hierarchy3.list
 
 Data-Dir:		demo
 Data-Files:		Vte.hs
@@ -32,7 +32,7 @@ x-Types-Tag:        vte
 x-Types-ModName:    Graphics.UI.Gtk.Vte.Types
 x-Types-Forward:    *Graphics.UI.GtkInternals
 x-Types-Destructor: objectUnrefFromMainloop
-x-Types-Hierarchy:  hierarchy.list
+x-Types-Hierarchy:  hierarchy3.list
 
 Source-Repository head
   type:         git
@@ -42,7 +42,7 @@ Library
         build-depends:  base >= 4 && < 5,
                         glib  >= 0.12.5.0 && < 0.13, 
                         pango >= 0.12.5.0 && < 0.13, 
-                        gtk   >= 0.12.5.0 && < 0.13
+                        gtk3  >= 0.12.5.0 && < 0.13
 						
         build-tools:    gtk2hsC2hs >= 0.13.9,
                         gtk2hsHookGenerator, gtk2hsTypeGen
@@ -64,4 +64,4 @@ Library
 		
         x-c2hs-Header:  vte/vte.h
         include-dirs:   Graphics/UI/Gtk/Vte/
-        pkgconfig-depends: vte >= 0.20.5
+        pkgconfig-depends: vte-2.90 >= 0.20.5
