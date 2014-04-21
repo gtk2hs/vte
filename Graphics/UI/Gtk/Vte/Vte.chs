@@ -608,23 +608,24 @@ terminalSetColorHighlight terminal highlight =
 -- If foreground is @Nothing@ and palette_size is greater than 0, the new foreground color is taken from palette[7]. 
 -- If background is @Nothing@ and palette_size is greater than 0, the new background color is taken from palette[0]. 
 -- If palette_size is 8 or 16, the third (dim) and possibly the second (bold) 8-color palettes are extrapolated from the new background color and the items in palette.
-terminalSetColors :: 
-    TerminalClass self => self   
+terminalSetColors ::
+    TerminalClass self => self
  -> Color   -- ^ @foreground@ - the new foreground color, or @Nothing@ 
  -> Color   -- ^ @background@ - the new background color, or @Nothing@ 
- -> Color   -- ^ @palette@ - the color palette                 
- -> Int   -- ^ @size@ - the number of entries in palette  
+ -> [Color] -- ^ @palette@ - the color palette
  -> IO ()
-terminalSetColors terminal foreground background palette size =
+terminalSetColors terminal foreground background palette =
+    allocaArray nbColors $ \pPtr ->
     with foreground $ \fPtr ->
-    with background $ \bPtr ->
-    with palette $ \pPtr ->
-    {#call terminal_set_colors#} 
-    (toTerminal terminal) 
-    (castPtr fPtr)
-    (castPtr bPtr)
-    (castPtr pPtr)
-    (fromIntegral size)
+    with background $ \bPtr -> do
+      pokeArray pPtr palette
+      {#call terminal_set_colors#}
+        (toTerminal terminal)
+        (castPtr fPtr)
+        (castPtr bPtr)
+        (castPtr pPtr)
+        (fromIntegral nbColors)
+  where nbColors = length palette
 
 -- | Reset the terminal palette to reasonable compiled-in defaults.
 terminalSetDefaultColors :: TerminalClass self => self -> IO ()
