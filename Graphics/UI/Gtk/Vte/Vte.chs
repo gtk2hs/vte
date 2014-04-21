@@ -174,7 +174,7 @@ module Graphics.UI.Gtk.Vte.Vte (
    pasteClipboard,
    raiseWindow,
    refreshWindow,
-   resizeWidnow,
+   resizeWindow,
    restoreWindow,
    selectionChanged,
    setScrollAdjustments,
@@ -1576,8 +1576,8 @@ refreshWindow :: TerminalClass self => Signal self (IO ())
 refreshWindow = Signal (connect_NONE__NONE "refresh-window")
 
 -- | Emitted at the child application's request.
-resizeWidnow :: TerminalClass self => Signal self (Int -> Int -> IO ())                                                  
-resizeWidnow = Signal (connect_INT_INT__NONE "resize-window")
+resizeWindow :: TerminalClass self => Signal self (Int -> Int -> IO ())
+resizeWindow = Signal (connect_INT_INT__NONE "resize-window")
 
 -- | Emitted at the child application's request.
 restoreWindow :: TerminalClass self => Signal self (IO ())
