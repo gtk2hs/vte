@@ -9,7 +9,7 @@ Build-Type:     Custom
 Cabal-Version:  >= 1.8
 Stability:      provisional
 homepage:       http://projects.haskell.org/gtk2hs/
-bug-reports:    http://hackage.haskell.org/trac/gtk2hs/
+bug-reports:    https://github.com/gtk2hs/vte/issues
 Synopsis:       Binding to the VTE library.
 Description:    The VTE library inserts terminal capability strings into a trie, and then
                 uses it to determine if data received from a pseudo-terminal is a control
