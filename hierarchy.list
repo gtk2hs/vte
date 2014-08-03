@@ -21,8 +21,9 @@
 # * noEq	: do not make this type an instance of Eq; used
 #		  if a different equality instance is manually
 #		  defined later
-    GObject 
-        GtkWidget
+    GObject
+        GtkObject 
+            GtkWidget
                 GtkContainer
                     GtkBin
                         VteTerminal as Terminal if vte
