@@ -58,7 +58,7 @@ Library
           Graphics.UI.Gtk.Vte.Types
           Graphics.UI.Gtk.Vte.Signals
 		
-        default-language:       Haskell2010
+        default-language:       Haskell98
         default-extensions:     ForeignFunctionInterface
         c-sources: Graphics/UI/Gtk/Vte/VteCharAttrFields.c
 
