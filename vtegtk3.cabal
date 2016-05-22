@@ -6,7 +6,7 @@ Copyright:      (c) 2001-2010 The Gtk2Hs Team
 Author:         Andy Stewart, Axel Simon
 Maintainer:     gtk2hs-users@lists.sourceforge.net
 Build-Type:     Custom
-Cabal-Version:  >= 1.8
+Cabal-Version:  >= 1.24
 Stability:      provisional
 homepage:       http://projects.haskell.org/gtk2hs/
 bug-reports:    https://github.com/gtk2hs/vte/issues
@@ -19,7 +19,6 @@ Description:    The VTE library inserts terminal capability strings into a trie,
 Category:       Graphics
 Tested-With:    GHC == 6.10.4, GHC == 6.12.3, GHC == 7.0.4, GHC == 7.2.1
 Extra-Source-Files: Graphics/UI/Gtk/Vte/VteCharAttrFields.h
-                    SetupWrapper.hs SetupMain.hs Gtk2HsSetup.hs
                     marshal.list
                     hierarchy3.list
 
@@ -38,11 +37,16 @@ Source-Repository head
   type:         git
   location:     https://github.com/gtk2hs/vte
 
+custom-setup
+  setup-depends: base >= 4.6,
+                 Cabal >= 1.24 && < 1.25,
+                 gtk2hs-buildtools >= 0.13.1.0 && < 0.14
+
 Library
         build-depends:  base >= 4 && < 5,
                         glib  >= 0.13.0.0 && < 0.14,
                         pango >= 0.13.0.0 && < 0.14,
-                        gtk3  >= 0.13.0.0 && < 0.14
+                        gtk3  >= 0.14.3.0 && < 0.15
 						
         build-tools:    gtk2hsC2hs >= 0.13.11,
                         gtk2hsHookGenerator, gtk2hsTypeGen
@@ -54,7 +58,8 @@ Library
           Graphics.UI.Gtk.Vte.Types
           Graphics.UI.Gtk.Vte.Signals
 		
-        extensions:     ForeignFunctionInterface
+        default-language:       Haskell2010
+        default-extensions:     ForeignFunctionInterface
         c-sources: Graphics/UI/Gtk/Vte/VteCharAttrFields.c
 
         x-Signals-File:  Graphics/UI/Gtk/Vte/Signals.chs
