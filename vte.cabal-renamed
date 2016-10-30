@@ -1,5 +1,5 @@
 Name:           vte
-Version:        0.13.1.0
+Version:        0.13.1.1
 License:        LGPL-2.1
 License-file:   COPYING
 Copyright:      (c) 2001-2010 The Gtk2Hs Team
@@ -67,7 +67,8 @@ Library
         x-Signals-Types: marshal.list
         x-Signals-Import: Graphics.UI.GtkInternals
 		
-        cpp-options:    -U__BLOCKS__
         x-c2hs-Header:  vte/vte.h
         include-dirs:   Graphics/UI/Gtk/Vte/
         pkgconfig-depends: vte >= 0.20.5
+        if os(darwin)
+          cpp-options: -U__BLOCKS__ -D__attribute__(A)= -D_Nullable= -D_Nonnull=
